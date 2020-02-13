@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const bcrypt = require("../middlewares/bcryptGate");
 
 module.exports = {
   index(req, res) {
@@ -12,17 +13,35 @@ module.exports = {
     });
   },
   store(req, res) {
-    User.create(req.body).then(data => {
-      res.json(data);
-    });
+    _user = req.body;
+    bcrypt
+      .createHash(_user.password)
+      .then(hashedPassword => {
+        _user.password = hashedPassword;
+        User.create(_user).then(data => {
+          res.json(data);
+        });
+      })
+      .catch(err => {
+        res.json(err);
+      });
   },
   update(req, res) {
     User.findByPk(req.params.id).then(data => {
-      data.update(req.body);
-      res.json({
-        success: true,
-        message: "Data Updated"
-      });
+      _user = req.body;
+      bcrypt
+        .createHash(_user.password)
+        .then(hashedPassword => {
+          _user.password = hashedPassword;
+          data.update(_user);
+          res.json({
+            success: true,
+            message: "Data Updated"
+          });
+        })
+        .catch(err => {
+          res.json(err);
+        });
     });
   },
   delete(req, res) {

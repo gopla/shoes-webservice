@@ -3,6 +3,11 @@ module.exports = (sequelize, DataTypes) => {
   const TransaksiDetail = sequelize.define(
     "TransaksiDetail",
     {
+      id_transaksi_detail: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
       id_transaksi: DataTypes.STRING,
       id_sepatu: DataTypes.NUMBER,
       jumlah: DataTypes.NUMBER,
@@ -12,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: false,
       freezeTableName: true,
-      tableName: "TransaksiDetail"
+      tableName: "Transaksi_Detail"
     }
   );
   TransaksiDetail.associate = function(models) {

@@ -1,14 +1,12 @@
 const express = require("express");
 const router = express.Router();
-// const verify = require("../middlewares/authUser");
+const verify = require("../middlewares/verifyToken");
 
 const con = require("../controller/transaksiController");
 
-// router.use(verify);
-router.get("/:id_user", con.index);
-// router.get("/:id", con.show);
-router.post("/:id_user", con.store);
-// router.put("/:id", con.update);
-// router.delete("/:id", con.delete);
+router.use(verify);
+router.get("/", con.index);
+router.get("/:id_transaksi", con.show);
+router.post("/", con.store);
 
 module.exports = router;

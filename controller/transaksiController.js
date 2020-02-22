@@ -16,10 +16,12 @@ module.exports = {
       });
   },
   show(req, res) {
-    Transaksi.findAll({
+    TransaksiDetail.findAll({
       where: {
-        id_user: req.user.id_user,
         id_transaksi: req.params.id_transaksi
+      },
+      include: {
+        model: Sepatu
       }
     })
       .then(data => {
@@ -30,15 +32,9 @@ module.exports = {
       });
   },
   store(req, res) {
-    // _trans = req.body;
-    // _trans.id_transaksi = uuid();
-    // _trans.id_user = req.user.id_user;
-    // res.json(req.user.id_user);
     Transaksi.create({
       id_transaksi: uuid(),
-      id_user: req.user.id_user,
-      id_retail: 1
-      // ...req.body
+      id_user: req.user.id_user
     }).then(data => {
       Keranjang.findAll({
         where: {
@@ -48,10 +44,8 @@ module.exports = {
           model: Sepatu
         }
       }).then(keranjang => {
-        // res.json(keranjang);
         let grandTotal = 0;
         keranjang.map(isi => {
-          // res.json(isi);
           TransaksiDetail.create({
             id_transaksi: data.id_transaksi,
             id_sepatu: isi.id_sepatu,

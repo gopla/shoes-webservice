@@ -15,7 +15,12 @@ module.exports = {
     });
   },
   store(req, res) {
+    const encoded = `data:${
+      req.file.mimetype
+    };base64,${req.file.buffer.toString("base64")}`;
+
     _user = req.body;
+    _user.foto = encoded;
     createHash(_user.password)
       .then(hashedPassword => {
         _user.password = hashedPassword;
@@ -29,7 +34,12 @@ module.exports = {
   },
   update(req, res) {
     User.findByPk(req.params.id).then(data => {
+      const encoded = `data:${
+        req.file.mimetype
+      };base64,${req.file.buffer.toString("base64")}`;
+
       _user = req.body;
+      _user.foto = encoded;
       createHash(_user.password)
         .then(hashedPassword => {
           _user.password = hashedPassword;

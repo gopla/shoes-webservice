@@ -12,13 +12,23 @@ module.exports = {
     });
   },
   store(req, res) {
-    Sepatu.create(req.body).then(data => {
+    const encoded = `data:${
+      req.file.mimetype
+    };base64,${req.file.buffer.toString("base64")}`;
+    let _spt = req.body;
+    _spt.gambar = encoded;
+    Sepatu.create(_spt).then(data => {
       res.json(data);
     });
   },
   update(req, res) {
+    const encoded = `data:${
+      req.file.mimetype
+    };base64,${req.file.buffer.toString("base64")}`;
+    let _spt = req.body;
+    _spt.gambar = encoded;
     Sepatu.findByPk(req.params.id).then(data => {
-      data.update(req.body);
+      data.update(_spt);
       res.json({
         success: true,
         message: "Data Updated"

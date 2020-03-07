@@ -40,14 +40,14 @@ Use Form-Data Body
 
 ```json
 {
-	"nama": "Sepatu Adidas",
-	"tipe": "Sport",
-	"gender": "Men / Women",
-	"deskripsi": "teks",
-	"ukuran": 43,
-	"harga": 200000,
-	"stok": 88,
-	"gambar": upload file->encode to base64
+  "nama": "Sepatu Adidas",
+  "tipe": "Sport",
+  "gender": "Men / Women",
+  "deskripsi": "teks",
+  "ukuran": 43,
+  "harga": 200000,
+  "stok": 88,
+  "gambar": "upload file->encode to base64"
 }
 ```
 
@@ -70,12 +70,12 @@ Use Form-Data Body
 
 ```json
 {
-	"nama": "Lala Lulu",
-	"email": "lala@here.com",
-	"password": "123",
-	"alamat": "Malang",
-	"telp": "089998889712",
-	"foto": upload file->encode to base64
+  "nama": "Lala Lulu",
+  "email": "lala@here.com",
+  "password": "123",
+  "alamat": "Malang",
+  "telp": "089998889712",
+  "foto": "upload file->encode to base64"
 }
 ```
 
@@ -117,7 +117,7 @@ Use JSON Body
 }
 ```
 
-_Return cart from a single logged in user_
+_Return cart from a single logged in user_  
 **GET**
 `/keranjang/`
 
@@ -132,7 +132,7 @@ _Return cart from a single logged in user_
 
 ### Transaksi
 
-_Return transactions data from a single logged in user_
+_Return transactions data from a single logged in user_  
 **GET**
 `/transaksi/`
 `/transaksi/:id_transaksi`

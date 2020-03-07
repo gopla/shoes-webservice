@@ -6,9 +6,9 @@ const con = require("../controller/keranjangController");
 
 router.use(verify);
 
-router.get("/:id_user", con.index);
+router.get("/", con.index);
 router.post("/", con.store);
 router.put("/", con.update);
-router.delete("/:id_user", con.delete);
+router.delete("/", con.delete);
 
 module.exports = router;

@@ -112,7 +112,7 @@ Use JSON Body
   "success": true,
   "tokenType": "bearer",
   "expiresIn": "1 day",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjozLCJlbWFpbCI6ImdvcGxhQGhlcmUuY29tIiwiYWxhbWF0IjoiTmdhanVtIiwidGVscCI6IjA4OTk5ODg4Nzc3OCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNTg0OTc4ODE3LCJleHAiOjE1ODUwNjUyMTd9.uJcnDuGiNMqrrPdq2ajmBxeayaa7KkYrfI-YiSJaRgg"
+  "token": "some token here"
 }
 ```
 

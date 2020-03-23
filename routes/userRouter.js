@@ -11,6 +11,6 @@ router.post("/", upload.single("foto"), con.store);
 router.put("/:id", upload.single("foto"), con.update);
 router.delete("/:id", con.delete);
 
-router.post("/login", con.autehnticate);
+router.post("/login", con.authenticate);
 
 module.exports = router;

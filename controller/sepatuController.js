@@ -1,4 +1,6 @@
-const { Sepatu } = require("../models");
+const { Sepatu, TransaksiDetail } = require("../models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = {
   index(req, res) {
@@ -47,5 +49,35 @@ module.exports = {
         message: "Data Deleted"
       });
     });
+  },
+  groupSepatuByName(req, res) {
+    Sepatu.findAll({
+      group: ["nama"]
+    })
+      .then(data => {
+        res.json(data);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  },
+  groupSepatuBestSeller(req, res) {
+    Sepatu.findAll({
+      include: {
+        model: TransaksiDetail,
+        where: {
+          jumlah: {
+            [Op.gt]: 0
+          }
+        }
+      },
+      group: ["nama"]
+    })
+      .then(data => {
+        res.json(data);
+      })
+      .catch(err => {
+        res.json(err);
+      });
   }
 };

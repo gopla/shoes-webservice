@@ -66,7 +66,7 @@ module.exports = {
       });
     });
   },
-  autehnticate(req, res) {
+  authenticate(req, res) {
     const _user = req.body;
     User.findAll({
       where: {

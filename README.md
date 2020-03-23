@@ -53,7 +53,9 @@ Use Form-Data Body
 
 **GET**
 `/sepatu/`
-`/sepatu/:id`
+`/sepatu/:id`  
+`/sepatu/group/name` -> Return Sepatu grouped by name  
+`/sepatu/group/bestSeller` -> Return Sepatu grouped by most purchased
 
 **POST** **-> Include a pict!**
 `/sepatu/`

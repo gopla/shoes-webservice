@@ -11,4 +11,7 @@ router.post("/", upload.single("gambar"), con.store);
 router.put("/:id", upload.single("gambar"), con.update);
 router.delete("/:id", con.delete);
 
+router.get("/group/name", con.groupSepatuByName);
+router.get("/group/bestSeller", con.groupSepatuBestSeller);
+
 module.exports = router;

@@ -12,7 +12,9 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
-  res.send("It works");
+  res.send(
+    `It works! <br> See the endpoints <a href="https://github.com/gopla/shoes-webservice" target="_blank">Here!</a>`
+  );
 });
 app.use(router);
 

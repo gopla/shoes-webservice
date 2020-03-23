@@ -2,9 +2,13 @@ const { Retail } = require("../models");
 
 module.exports = {
   index(req, res) {
-    Retail.findAll().then(data => {
-      res.json(data);
-    });
+    Retail.findAll()
+      .then(data => {
+        res.json(data);
+      })
+      .catch(err => {
+        res.json(err);
+      });
   },
   show(req, res) {
     Retail.findByPk(req.params.id).then(data => {

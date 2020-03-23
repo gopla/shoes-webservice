@@ -2,9 +2,13 @@ const { Sepatu } = require("../models");
 
 module.exports = {
   index(req, res) {
-    Sepatu.findAll().then(data => {
-      res.json(data);
-    });
+    Sepatu.findAll()
+      .then(data => {
+        res.json(data);
+      })
+      .catch(err => {
+        res.json(err);
+      });
   },
   show(req, res) {
     Sepatu.findByPk(req.params.id).then(data => {

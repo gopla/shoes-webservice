@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: false,
       freezeTableName: true,
-      tableName: "Retail"
+      tableName: "retail"
     }
   );
   Retail.associate = function(models) {

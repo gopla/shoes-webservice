@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: false,
       freezeTableName: true,
-      tableName: "Transaksi_Detail"
+      tableName: "transaksi_detail"
     }
   );
   TransaksiDetail.associate = function(models) {

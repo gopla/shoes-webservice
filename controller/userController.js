@@ -15,12 +15,15 @@ module.exports = {
     });
   },
   store(req, res) {
-    const encoded = `data:${
-      req.file.mimetype
-    };base64,${req.file.buffer.toString("base64")}`;
-
     _user = req.body;
-    _user.foto = encoded;
+    if (_user.foto != "null") {
+      const encoded = `data:${
+        req.file.mimetype
+      };base64,${req.file.buffer.toString("base64")}`;
+      _user.foto = encoded;
+    } else {
+      _user.foto = "";
+    }
     createHash(_user.password)
       .then(hashedPassword => {
         _user.password = hashedPassword;
@@ -79,12 +82,21 @@ module.exports = {
         } else {
           if (bcrypt.compareSync(_user.password, data[0].password)) {
             jwt.sign(
-              { payload: data[0] },
+              {
+                id_user: data[0].id_user,
+                nama: data[0].name,
+                email: data[0].email,
+                alamat: data[0].alamat,
+                telp: data[0].telp,
+                role: data[0].role
+              },
               "ayoKerja",
               { expiresIn: "1d" },
               (err, token) => {
                 res.json({
                   success: true,
+                  tokenType: "bearer",
+                  expiresIn: "1 day",
                   token: token
                 });
               }

@@ -1,4 +1,10 @@
-const { Transaksi, TransaksiDetail, Sepatu, Keranjang } = require("../models");
+const {
+  Transaksi,
+  TransaksiDetail,
+  Sepatu,
+  Keranjang,
+  Retail
+} = require("../models");
 const uuid = require("uuid/v4");
 
 module.exports = {
@@ -6,6 +12,9 @@ module.exports = {
     Transaksi.findAll({
       where: {
         id_user: req.user.id_user
+      },
+      include: {
+        model: Retail
       }
     })
       .then(data => {
@@ -21,7 +30,9 @@ module.exports = {
         id_transaksi: req.params.id_transaksi
       },
       include: {
-        model: Sepatu
+        model: {
+          Sepatu
+        }
       }
     })
       .then(data => {

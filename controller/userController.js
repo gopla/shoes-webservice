@@ -11,7 +11,7 @@ module.exports = {
   },
   show(req, res) {
     User.findByPk(req.params.id).then(data => {
-      res.json(data);
+      res.json({ data });
     });
   },
   store(req, res) {

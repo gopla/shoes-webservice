@@ -17,9 +17,7 @@ module.exports = {
   store(req, res) {
     _user = req.body;
     if (_user.foto != "null") {
-      const encoded = `data:${
-        req.file.mimetype
-      };base64,${req.file.buffer.toString("base64")}`;
+      const encoded = `${req.file.buffer.toString("base64")}`;
       _user.foto = encoded;
     } else {
       _user.foto = "";
@@ -37,9 +35,7 @@ module.exports = {
   },
   update(req, res) {
     User.findByPk(req.params.id).then(data => {
-      const encoded = `data:${
-        req.file.mimetype
-      };base64,${req.file.buffer.toString("base64")}`;
+      const encoded = `${req.file.buffer.toString("base64")}`;
 
       _user = req.body;
       _user.foto = encoded;
@@ -95,7 +91,7 @@ module.exports = {
               (err, token) => {
                 res.json({
                   success: true,
-                  tokenType: "bearer",
+                  tokenType: "bearerHeader",
                   expiresIn: "1 day",
                   token: token
                 });
@@ -108,6 +104,15 @@ module.exports = {
             });
           }
         }
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  },
+  me(req, res) {
+    User.findByPk(req.user.id_user)
+      .then(data => {
+        res.json({ data });
       })
       .catch(err => {
         res.json(err);

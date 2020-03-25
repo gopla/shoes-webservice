@@ -18,9 +18,7 @@ module.exports = {
     });
   },
   store(req, res) {
-    const encoded = `data:${
-      req.file.mimetype
-    };base64,${req.file.buffer.toString("base64")}`;
+    const encoded = `${req.file.buffer.toString("base64")}`;
     let _spt = req.body;
     _spt.gambar = encoded;
     Sepatu.create(_spt).then(data => {
@@ -28,9 +26,7 @@ module.exports = {
     });
   },
   update(req, res) {
-    const encoded = `data:${
-      req.file.mimetype
-    };base64,${req.file.buffer.toString("base64")}`;
+    const encoded = `${req.file.buffer.toString("base64")}`;
     let _spt = req.body;
     _spt.gambar = encoded;
     Sepatu.findByPk(req.params.id).then(data => {

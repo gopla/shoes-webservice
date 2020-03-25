@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const verify = require("../middlewares/verifyToken");
 
 let upload = multer();
 const con = require("../controller/userController");
@@ -12,5 +13,9 @@ router.put("/:id", upload.single("foto"), con.update);
 router.delete("/:id", con.delete);
 
 router.post("/login", con.authenticate);
+
+router.use(verify);
+
+router.get("/profile/me", con.me);
 
 module.exports = router;

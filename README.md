@@ -21,8 +21,8 @@ Use JSON Body
 }
 ```
 
-**GET**
-`/retail/`
+**GET**  
+`/retail/`  
 `/retail/:id`
 
 **POST**
@@ -42,7 +42,7 @@ Use Form-Data Body
 {
   "nama": "Sepatu Adidas",
   "tipe": "Sport",
-  "gender": "Men / Women",
+  "gender": "Men / Women / Unisex",
   "deskripsi": "teks",
   "ukuran": 43,
   "harga": 200000,
@@ -51,19 +51,19 @@ Use Form-Data Body
 }
 ```
 
-**GET**
-`/sepatu/`
+**GET**  
+`/sepatu/`  
 `/sepatu/:id`  
 `/sepatu/group/name` -> Return Sepatu grouped by name  
 `/sepatu/group/bestSeller` -> Return Sepatu grouped by most purchased
 
-**POST** **-> Include a pict!**
+**POST** **-> Include a pict!**  
 `/sepatu/`
 
-**PUT** **-> Include a pict!**
+**PUT** **-> Include a pict!**  
 `/sepatu/:id`
 
-**DELETE**
+**DELETE**  
 `/sepatu/:id`
 
 ### User
@@ -81,17 +81,18 @@ Use Form-Data Body
 }
 ```
 
-**GET**
+**GET**  
+`/user/`  
+`/user/:id`  
+`/user/profile/me` -> need token, open self profile
+
+**POST** **-> Include a pict!**  
 `/user/`
+
+**PUT** **-> Include a pict!**  
 `/user/:id`
 
-**POST** **-> Include a pict!**
-`/user/`
-
-**PUT** **-> Include a pict!**
-`/user/:id`
-
-**DELETE**
+**DELETE**  
 `/user/:id`
 
 ### Login
@@ -112,7 +113,7 @@ Use JSON Body
 // Response
 {
   "success": true,
-  "tokenType": "bearer",
+  "tokenType": "bearerHeader",
   "expiresIn": "1 day",
   "token": "some token here"
 }
@@ -130,24 +131,24 @@ Use JSON Body
 ```
 
 _Return cart from a single logged in user_  
-**GET**
+**GET**  
 `/keranjang/`
 
-**POST**
+**POST**  
 `/keranjang/`
 
-**PUT**
+**PUT**  
 `/keranjang/`
 
-**DELETE**
+**DELETE**  
 `/keranjang/`
 
 ### Transaksi
 
 _Return transactions data from a single logged in user_  
-**GET**
-`/transaksi/`
+**GET**  
+`/transaksi/`  
 `/transaksi/:id_transaksi`
 
-**POST**
+**POST**  
 `/transaksi/`

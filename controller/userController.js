@@ -87,12 +87,10 @@ module.exports = {
                 role: data[0].role
               },
               "ayoKerja",
-              { expiresIn: "1d" },
               (err, token) => {
                 res.json({
                   success: true,
                   tokenType: "bearerHeader",
-                  expiresIn: "1 day",
                   token: token
                 });
               }

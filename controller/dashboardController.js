@@ -1,6 +1,11 @@
 const { Sepatu, User, Transaksi, Retail } = require("../models");
 const sequelize = require("sequelize");
 
+const sql = new sequelize("sepatu", "root", "", {
+  host: "localhost",
+  dialect: "mysql"
+});
+
 async function jmlSepatu() {
   let jmlSepatu = await Sepatu.findAll({
     attributes: [
@@ -41,6 +46,26 @@ async function jmlRetail() {
   return jmlRetail;
 }
 
+async function getTransPerMonth() {
+  let now = new Date();
+  let thisMonth = now.getMonth() + 1;
+
+  let transPerMonth = await Transaksi.findAll({
+    attributes: [
+      "tanggal",
+      [sequelize.fn("sum", sequelize.col("total")), "total_harian"]
+    ],
+    where: [
+      sequelize.where(
+        sequelize.fn("month", sequelize.col("tanggal")),
+        thisMonth
+      )
+    ],
+    group: [sequelize.fn("date", sequelize.col("tanggal"))]
+  });
+  return transPerMonth;
+}
+
 module.exports = {
   countSepatu(req, res) {
     jmlSepatu().then(sepatu => {
@@ -60,6 +85,11 @@ module.exports = {
   countUser(req, res) {
     jmlUser().then(user => {
       res.json(user);
+    });
+  },
+  getTransPerMonth(req, res) {
+    getTransPerMonth().then(data => {
+      res.json(data);
     });
   }
 };

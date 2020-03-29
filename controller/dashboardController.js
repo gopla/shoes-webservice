@@ -1,11 +1,6 @@
 const { Sepatu, User, Transaksi, Retail } = require("../models");
 const sequelize = require("sequelize");
 
-const sql = new sequelize("sepatu", "root", "", {
-  host: "localhost",
-  dialect: "mysql"
-});
-
 async function jmlSepatu() {
   let jmlSepatu = await Sepatu.findAll({
     attributes: [
@@ -68,24 +63,32 @@ async function getTransPerMonth() {
 
 module.exports = {
   countSepatu(req, res) {
-    jmlSepatu().then(sepatu => {
-      res.json(sepatu);
-    });
+    if (req.user.role == "Admin") {
+      jmlSepatu().then(sepatu => {
+        res.json(sepatu);
+      });
+    }
   },
   countRetail(req, res) {
-    jmlRetail().then(retail => {
-      res.json(retail);
-    });
+    if (req.user.role == "Admin") {
+      jmlRetail().then(retail => {
+        res.json(retail);
+      });
+    }
   },
   countTrans(req, res) {
-    jmlTransaksi().then(trans => {
-      res.json(trans);
-    });
+    if (req.user.role == "Admin") {
+      jmlTransaksi().then(trans => {
+        res.json(trans);
+      });
+    }
   },
   countUser(req, res) {
-    jmlUser().then(user => {
-      res.json(user);
-    });
+    if (req.user.role == "Admin") {
+      jmlUser().then(user => {
+        res.json(user);
+      });
+    }
   },
   getTransPerMonth(req, res) {
     getTransPerMonth().then(data => {

@@ -9,20 +9,30 @@ const uuid = require("uuid/v4");
 
 module.exports = {
   index(req, res) {
-    Transaksi.findAll({
-      where: {
-        id_user: req.user.id_user
-      },
-      include: {
-        model: Retail
-      }
-    })
-      .then(data => {
-        res.json(data);
+    if (req.user.role == "Admin") {
+      Transaksi.findAll()
+        .then(data => {
+          res.json(data);
+        })
+        .catch(err => {
+          res.json(err);
+        });
+    } else {
+      Transaksi.findAll({
+        where: {
+          id_user: req.user.id_user
+        },
+        include: {
+          model: Retail
+        }
       })
-      .catch(err => {
-        res.json(err);
-      });
+        .then(data => {
+          res.json(data);
+        })
+        .catch(err => {
+          res.json(err);
+        });
+    }
   },
   show(req, res) {
     TransaksiDetail.findAll({

@@ -25,13 +25,13 @@ Use JSON Body
 `/retail/`  
 `/retail/:id`
 
-**POST**
+**POST**  
 `/retail/`
 
-**PUT**
+**PUT**  
 `/retail/:id`
 
-**DELETE**
+**DELETE**  
 `/retail/:id`
 
 ### Sepatu
@@ -52,10 +52,11 @@ Use Form-Data Body
 ```
 
 **GET**  
-`/sepatu/`  
+`/sepatu/` -> Now user **Verify**, to determine Admin or User  
 `/sepatu/:id`  
 `/sepatu/group/name` -> Return Sepatu grouped by name  
-`/sepatu/group/bestSeller` -> Return Sepatu grouped by most purchased
+`/sepatu/group/bestSeller` -> Return Sepatu grouped by most purchased  
+`/sepatu/group/type/:type` -> Return Sepatu Where Type equal to paramas
 
 **POST** **-> Include a pict!**  
 `/sepatu/`

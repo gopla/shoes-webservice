@@ -56,7 +56,8 @@ Use Form-Data Body
 `/sepatu/:id`  
 `/sepatu/group/name` -> Return Sepatu grouped by name  
 `/sepatu/group/bestSeller` -> Return Sepatu grouped by most purchased  
-`/sepatu/group/type/:type` -> Return Sepatu Where Type equal to paramas
+`/sepatu/group/type/:type` -> Return Sepatu Where Type equal to paramas  
+`/sepatu/group/name/:name` -> Return Sepatu Where Name equal to paramas
 
 **POST** **-> Include a pict!**  
 `/sepatu/`

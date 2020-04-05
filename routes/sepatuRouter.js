@@ -15,6 +15,7 @@ router.get("/group/name", con.groupSepatuByName);
 router.get("/group/bestSeller", con.groupSepatuBestSeller);
 router.get("/group/type", con.groupSepatuByType);
 router.get("/group/type/:type", con.sepatuByType);
+router.get("/group/name/:name", con.sepatuByName);
 
 router.use(verify);
 router.get("/", con.index);

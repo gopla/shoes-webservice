@@ -119,4 +119,20 @@ module.exports = {
         res.json(err);
       });
   },
+  sepatuByName(req, res) {
+    Sepatu.findAll({
+      where: {
+        nama: req.params.name,
+        stok: {
+          [Op.gt]: 0,
+        },
+      },
+    })
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  },
 };

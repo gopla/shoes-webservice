@@ -65,6 +65,7 @@ module.exports = {
   groupSepatuByName(req, res) {
     Sepatu.findAll({
       group: ["nama"],
+      order: ["ukuran", "ASC"],
     })
       .then((data) => {
         res.json(data);
@@ -111,6 +112,7 @@ module.exports = {
           [Op.gt]: 0,
         },
       },
+      group: ["nama"],
     })
       .then((data) => {
         res.json(data);
@@ -127,6 +129,7 @@ module.exports = {
           [Op.gt]: 0,
         },
       },
+      order: [["ukuran", "ASC"]],
     })
       .then((data) => {
         res.json(data);

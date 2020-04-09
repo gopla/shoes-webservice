@@ -9,4 +9,6 @@ router.get("/", con.index);
 router.get("/:id_transaksi", con.show);
 router.post("/", con.store);
 
+router.put("/:id_transaksi", con.updateRetail);
+
 module.exports = router;

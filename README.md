@@ -155,3 +155,6 @@ _Return transactions data from a single logged in user_
 
 **POST**  
 `/transaksi/`
+
+**PUT**
+`/transaksi/:id_transaksi` -> Update retail

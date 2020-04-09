@@ -107,4 +107,15 @@ module.exports = {
       res.json(data);
     });
   },
+  updateRetail(req, res) {
+    Transaksi.findByPk(req.params.id_transaksi).then((data) => {
+      data.update({
+        id_retail: req.body.id_retail,
+      });
+      res.json({
+        success: true,
+        message: "Data updated",
+      });
+    });
+  },
 };

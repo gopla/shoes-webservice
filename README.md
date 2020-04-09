@@ -144,6 +144,7 @@ _Return cart from a single logged in user_
 
 **DELETE**  
 `/keranjang/`
+`/keranjang/:id_sepatu` -> Delete one item by id sepatu
 
 ### Transaksi
 

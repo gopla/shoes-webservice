@@ -10,5 +10,6 @@ router.get("/", con.index);
 router.post("/", con.store);
 router.put("/", con.update);
 router.delete("/", con.delete);
+router.delete("/:id_sepatu", con.delOneItem);
 
 module.exports = router;

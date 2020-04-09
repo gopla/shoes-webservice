@@ -158,3 +158,11 @@ _Return transactions data from a single logged in user_
 
 **PUT**
 `/transaksi/:id_transaksi` -> Update retail
+
+Use JSON Body
+
+```json
+{
+  "id_retail": 16
+}
+```

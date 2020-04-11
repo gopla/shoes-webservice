@@ -151,13 +151,15 @@ _Return cart from a single logged in user_
 _Return transactions data from a single logged in user_  
 **GET**  
 `/transaksi/`  
-`/transaksi/:id_transaksi`
+`/transaksi/:id_transaksi`  
+`/transaksi/status/:status(1 / 0)` -> Show transaksi by status
 
 **POST**  
 `/transaksi/`
 
-**PUT**
-`/transaksi/:id_transaksi` -> Update retail
+**PUT**  
+`/transaksi/:id_transaksi` -> Update retail  
+`/transaksi/status/:id_transaksi` -> Update status from 1 to 0
 
 Use JSON Body
 

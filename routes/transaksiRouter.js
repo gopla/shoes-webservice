@@ -10,5 +10,7 @@ router.get("/:id_transaksi", con.show);
 router.post("/", con.store);
 
 router.put("/:id_transaksi", con.updateRetail);
+router.put("/status/:id_transaksi", con.updateStatus);
+router.get("/status/:status", con.showTransByStatus);
 
 module.exports = router;

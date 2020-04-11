@@ -118,4 +118,29 @@ module.exports = {
       });
     });
   },
+  updateStatus(req, res) {
+    Transaksi.findByPk(req.params.id_transaksi).then((data) => {
+      data.update({
+        status: 0,
+      });
+      res.json({
+        success: true,
+        message: "Transaksi finished",
+      });
+    });
+  },
+  showTransByStatus(req, res) {
+    Transaksi.findAll({
+      where: {
+        id_user: req.user.id_user,
+        status: req.params.status,
+      },
+    })
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  },
 };

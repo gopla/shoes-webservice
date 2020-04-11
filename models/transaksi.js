@@ -5,20 +5,21 @@ module.exports = (sequelize, DataTypes) => {
     {
       id_transaksi: {
         primaryKey: true,
-        type: DataTypes.UUID
+        type: DataTypes.UUID,
       },
       id_user: DataTypes.NUMBER,
       tanggal: DataTypes.DATE,
       total: DataTypes.NUMBER,
-      id_retail: DataTypes.NUMBER
+      id_retail: DataTypes.NUMBER,
+      status: DataTypes.BOOLEAN,
     },
     {
       timestamps: false,
       freezeTableName: true,
-      tableName: "transaksi"
+      tableName: "transaksi",
     }
   );
-  Transaksi.associate = function(models) {
+  Transaksi.associate = function (models) {
     // associations can be defined here
     Transaksi.hasMany(models.TransaksiDetail, { foreignKey: "id_transaksi" });
     Transaksi.belongsTo(models.User, { foreignKey: "id_user" });

@@ -31,6 +31,7 @@ module.exports = {
         include: {
           model: Retail,
         },
+        order: [["tanggal", "ASC"]],
       })
         .then((data) => {
           res.json(data);

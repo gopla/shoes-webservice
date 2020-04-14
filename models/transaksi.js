@@ -1,7 +1,7 @@
-"use strict";
+'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Transaksi = sequelize.define(
-    "Transaksi",
+    'Transaksi',
     {
       id_transaksi: {
         primaryKey: true,
@@ -16,14 +16,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: false,
       freezeTableName: true,
-      tableName: "transaksi",
+      tableName: 'transaksi',
     }
-  );
+  )
   Transaksi.associate = function (models) {
     // associations can be defined here
-    Transaksi.hasMany(models.TransaksiDetail, { foreignKey: "id_transaksi" });
-    Transaksi.belongsTo(models.User, { foreignKey: "id_user" });
-    Transaksi.belongsTo(models.Retail, { foreignKey: "id_retail" });
-  };
-  return Transaksi;
-};
+    Transaksi.hasMany(models.TransaksiDetail, { foreignKey: 'id_transaksi' })
+    Transaksi.belongsTo(models.User, { foreignKey: 'id_user' })
+    Transaksi.belongsTo(models.Retail, { foreignKey: 'id_retail' })
+  }
+  return Transaksi
+}

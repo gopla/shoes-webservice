@@ -1,4 +1,4 @@
-const { Keranjang, Sepatu } = require("../models");
+const { Keranjang, Sepatu } = require('../models')
 
 module.exports = {
   index(req, res) {
@@ -10,8 +10,8 @@ module.exports = {
         model: Sepatu,
       },
     }).then((data) => {
-      res.json(data);
-    });
+      res.json(data)
+    })
   },
   store(req, res) {
     Keranjang.findAll({
@@ -24,17 +24,17 @@ module.exports = {
         Keranjang.findByPk(data[0].id_keranjang).then((row) => {
           row.update({
             jumlah: data[0].jumlah + parseInt(req.body.jumlah),
-          });
-          res.json(row);
-        });
+          })
+          res.json(row)
+        })
       } else {
-        let _keranjang = req.body;
-        _keranjang.id_user = req.user.id_user;
+        let _keranjang = req.body
+        _keranjang.id_user = req.user.id_user
         Keranjang.create(_keranjang).then((row) => {
-          res.json(row);
-        });
+          res.json(row)
+        })
       }
-    });
+    })
   },
   update(req, res) {
     Keranjang.findAll({
@@ -45,16 +45,16 @@ module.exports = {
     }).then((data) => {
       Keranjang.findByPk(data[0].id_keranjang)
         .then((data) => {
-          data.update(req.body);
+          data.update(req.body)
           res.json({
             success: true,
-            message: "Data updated",
-          });
+            message: 'Data updated',
+          })
         })
         .catch((err) => {
-          res.json(err);
-        });
-    });
+          res.json(err)
+        })
+    })
   },
   delete(req, res) {
     Keranjang.findAll({
@@ -64,14 +64,14 @@ module.exports = {
     }).then((data) => {
       data.map((data) => {
         Keranjang.findByPk(data.id_keranjang).then((isi) => {
-          isi.destroy();
-        });
-      });
+          isi.destroy()
+        })
+      })
       res.json({
         success: true,
-        message: "Data dihapus",
-      });
-    });
+        message: 'Data dihapus',
+      })
+    })
   },
   delOneItem(req, res) {
     Keranjang.findAll({
@@ -82,14 +82,14 @@ module.exports = {
     })
       .then((data) => {
         Keranjang.findByPk(data[0].id_keranjang).then((isi) => {
-          isi.destroy();
-        });
+          isi.destroy()
+        })
       })
       .then(() => {
         res.json({
           success: true,
-          message: "Data dihapus",
-        });
-      });
+          message: 'Data dihapus',
+        })
+      })
   },
-};
+}

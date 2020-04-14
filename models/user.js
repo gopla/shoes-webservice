@@ -1,12 +1,12 @@
-"use strict";
+'use strict'
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
-    "User",
+    'User',
     {
       id_user: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
       nama: DataTypes.STRING,
       email: DataTypes.STRING,
@@ -14,17 +14,17 @@ module.exports = (sequelize, DataTypes) => {
       alamat: DataTypes.STRING,
       telp: DataTypes.STRING,
       role: DataTypes.STRING,
-      foto: DataTypes.STRING
+      foto: DataTypes.STRING,
     },
     {
       timestamps: false,
       freezeTableName: true,
-      tableName: "user"
+      tableName: 'user',
     }
-  );
-  User.associate = function(models) {
+  )
+  User.associate = function (models) {
     // associations can be defined here
-    User.hasMany(models.Transaksi, { foreignKey: "id_user" });
-  };
-  return User;
-};
+    User.hasMany(models.Transaksi, { foreignKey: 'id_user' })
+  }
+  return User
+}

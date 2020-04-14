@@ -5,24 +5,24 @@ const {
   Keranjang,
   Retail,
   User,
-} = require("../models");
-const uuid = require("uuid/v4");
+} = require('../models')
+const uuid = require('uuid/v4')
 
 module.exports = {
   index(req, res) {
-    if (req.user.role == "Admin") {
+    if (req.user.role == 'Admin') {
       Transaksi.findAll({
         include: {
           model: User,
         },
-        order: [["tanggal", "ASC"]],
+        order: [['tanggal', 'ASC']],
       })
         .then((data) => {
-          res.json(data);
+          res.json(data)
         })
         .catch((err) => {
-          res.json(err);
-        });
+          res.json(err)
+        })
     } else {
       Transaksi.findAll({
         where: {
@@ -31,14 +31,14 @@ module.exports = {
         include: {
           model: Retail,
         },
-        order: [["tanggal", "ASC"]],
+        order: [['tanggal', 'ASC']],
       })
         .then((data) => {
-          res.json(data);
+          res.json(data)
         })
         .catch((err) => {
-          res.json(err);
-        });
+          res.json(err)
+        })
     }
   },
   show(req, res) {
@@ -64,11 +64,11 @@ module.exports = {
       ],
     })
       .then((data) => {
-        res.json(data);
+        res.json(data)
       })
       .catch((err) => {
-        res.json(err);
-      });
+        res.json(err)
+      })
   },
   store(req, res) {
     Transaksi.create({
@@ -83,7 +83,7 @@ module.exports = {
           model: Sepatu,
         },
       }).then((keranjang) => {
-        let grandTotal = 0;
+        let grandTotal = 0
         keranjang.map((isi) => {
           TransaksiDetail.create({
             id_transaksi: data.id_transaksi,
@@ -91,44 +91,44 @@ module.exports = {
             jumlah: isi.jumlah,
             harga: isi.Sepatu.harga,
             subtotal: isi.Sepatu.harga * isi.jumlah,
-          });
+          })
           Sepatu.findByPk(isi.id_sepatu).then((spt) => {
-            spt.stok -= isi.jumlah;
-            spt.save();
-          });
+            spt.stok -= isi.jumlah
+            spt.save()
+          })
           Transaksi.findByPk(data.id_transaksi).then((row) => {
-            grandTotal += isi.Sepatu.harga * isi.jumlah;
+            grandTotal += isi.Sepatu.harga * isi.jumlah
             row.update({
               total: grandTotal,
-            });
-          });
-          isi.destroy();
-        });
-      });
-      res.json(data);
-    });
+            })
+          })
+          isi.destroy()
+        })
+      })
+      res.json(data)
+    })
   },
   updateRetail(req, res) {
     Transaksi.findByPk(req.params.id_transaksi).then((data) => {
       data.update({
         id_retail: req.body.id_retail,
-      });
+      })
       res.json({
         success: true,
-        message: "Data updated",
-      });
-    });
+        message: 'Data updated',
+      })
+    })
   },
   updateStatus(req, res) {
     Transaksi.findByPk(req.params.id_transaksi).then((data) => {
       data.update({
         status: 0,
-      });
+      })
       res.json({
         success: true,
-        message: "Transaksi finished",
-      });
-    });
+        message: 'Transaksi finished',
+      })
+    })
   },
   showTransByStatus(req, res) {
     Transaksi.findAll({
@@ -138,10 +138,10 @@ module.exports = {
       },
     })
       .then((data) => {
-        res.json(data);
+        res.json(data)
       })
       .catch((err) => {
-        res.json(err);
-      });
+        res.json(err)
+      })
   },
-};
+}

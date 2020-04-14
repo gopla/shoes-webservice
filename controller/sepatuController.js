@@ -1,17 +1,17 @@
-const { Sepatu, TransaksiDetail } = require("../models");
-const Sequelize = require("sequelize");
-const Op = Sequelize.Op;
+const { Sepatu, TransaksiDetail } = require('../models')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 module.exports = {
   index(req, res) {
-    if (req.user.role == "Admin") {
+    if (req.user.role == 'Admin') {
       Sepatu.findAll()
         .then((data) => {
-          res.json(data);
+          res.json(data)
         })
         .catch((err) => {
-          res.json(err);
-        });
+          res.json(err)
+        })
     } else {
       Sepatu.findAll({
         where: {
@@ -21,58 +21,58 @@ module.exports = {
         },
       })
         .then((data) => {
-          res.json(data);
+          res.json(data)
         })
         .catch((err) => {
-          res.json(err);
-        });
+          res.json(err)
+        })
     }
   },
   show(req, res) {
     Sepatu.findByPk(req.params.id).then((data) => {
-      res.json({ data });
-    });
+      res.json({ data })
+    })
   },
   store(req, res) {
-    const encoded = `${req.file.buffer.toString("base64")}`;
-    let _spt = req.body;
-    _spt.gambar = encoded;
+    const encoded = `${req.file.buffer.toString('base64')}`
+    let _spt = req.body
+    _spt.gambar = encoded
     Sepatu.create(_spt).then((data) => {
-      res.json(data);
-    });
+      res.json(data)
+    })
   },
   update(req, res) {
-    const encoded = `${req.file.buffer.toString("base64")}`;
-    let _spt = req.body;
-    _spt.gambar = encoded;
+    const encoded = `${req.file.buffer.toString('base64')}`
+    let _spt = req.body
+    _spt.gambar = encoded
     Sepatu.findByPk(req.params.id).then((data) => {
-      data.update(_spt);
+      data.update(_spt)
       res.json({
         success: true,
-        message: "Data Updated",
-      });
-    });
+        message: 'Data Updated',
+      })
+    })
   },
   delete(req, res) {
     Sepatu.findByPk(req.params.id).then((data) => {
-      data.destroy();
+      data.destroy()
       res.json({
         success: true,
-        message: "Data Deleted",
-      });
-    });
+        message: 'Data Deleted',
+      })
+    })
   },
   groupSepatuByName(req, res) {
     Sepatu.findAll({
-      group: ["nama"],
-      order: ["ukuran", "ASC"],
+      group: ['nama'],
+      order: ['ukuran', 'ASC'],
     })
       .then((data) => {
-        res.json(data);
+        res.json(data)
       })
       .catch((err) => {
-        res.json(err);
-      });
+        res.json(err)
+      })
   },
   groupSepatuBestSeller(req, res) {
     Sepatu.findAll({
@@ -84,25 +84,25 @@ module.exports = {
           },
         },
       },
-      group: ["nama"],
+      group: ['nama'],
     })
       .then((data) => {
-        res.json(data);
+        res.json(data)
       })
       .catch((err) => {
-        res.json(err);
-      });
+        res.json(err)
+      })
   },
   groupSepatuByType(req, res) {
     Sepatu.findAll({
-      group: ["tipe"],
+      group: ['tipe'],
     })
       .then((data) => {
-        res.json(data);
+        res.json(data)
       })
       .catch((err) => {
-        res.json(err);
-      });
+        res.json(err)
+      })
   },
   sepatuByType(req, res) {
     Sepatu.findAll({
@@ -112,14 +112,14 @@ module.exports = {
           [Op.gt]: 0,
         },
       },
-      group: ["nama"],
+      group: ['nama'],
     })
       .then((data) => {
-        res.json(data);
+        res.json(data)
       })
       .catch((err) => {
-        res.json(err);
-      });
+        res.json(err)
+      })
   },
   sepatuByName(req, res) {
     Sepatu.findAll({
@@ -129,13 +129,13 @@ module.exports = {
           [Op.gt]: 0,
         },
       },
-      order: [["ukuran", "ASC"]],
+      order: [['ukuran', 'ASC']],
     })
       .then((data) => {
-        res.json(data);
+        res.json(data)
       })
       .catch((err) => {
-        res.json(err);
-      });
+        res.json(err)
+      })
   },
-};
+}

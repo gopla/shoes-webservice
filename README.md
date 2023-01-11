@@ -7,6 +7,14 @@
 - [x] Transaksi
 - [x] Transaksi Detail
 
+## Migrate
+
+```bash
+npx sequelize db:migrate
+```
+
+Run the code to migrate the database
+
 ## Endpoint
 
 ### - Retail
@@ -15,9 +23,9 @@ Use JSON Body
 
 ```json
 {
-  "nama": "Adidas Malang",
-  "lokasi": "Jl. Sana, No. XX, Malang",
-  "telp": "0341443321"
+	"nama": "Adidas Malang",
+	"lokasi": "Jl. Sana, No. XX, Malang",
+	"telp": "0341443321"
 }
 ```
 
@@ -40,14 +48,14 @@ Use Form-Data Body
 
 ```json
 {
-  "nama": "Sepatu Adidas",
-  "tipe": "Sport",
-  "gender": "Men / Women / Unisex",
-  "deskripsi": "teks",
-  "ukuran": 43,
-  "harga": 200000,
-  "stok": 88,
-  "gambar": "upload file->encode to base64"
+	"nama": "Sepatu Adidas",
+	"tipe": "Sport",
+	"gender": "Men / Women / Unisex",
+	"deskripsi": "teks",
+	"ukuran": 43,
+	"harga": 200000,
+	"stok": 88,
+	"gambar": "upload file->encode to base64"
 }
 ```
 
@@ -74,12 +82,12 @@ Use Form-Data Body
 
 ```json
 {
-  "nama": "Lala Lulu",
-  "email": "lala@here.com",
-  "password": "123",
-  "alamat": "Malang",
-  "telp": "089998889712",
-  "foto": "upload file->encode to base64"
+	"nama": "Lala Lulu",
+	"email": "lala@here.com",
+	"password": "123",
+	"alamat": "Malang",
+	"telp": "089998889712",
+	"foto": "upload file->encode to base64"
 }
 ```
 
@@ -103,8 +111,8 @@ Use JSON Body
 
 ```json
 {
-  "email": "lala@here.com",
-  "password": "123"
+	"email": "lala@here.com",
+	"password": "123"
 }
 ```
 
@@ -114,10 +122,10 @@ Use JSON Body
 ```json
 // Response
 {
-  "success": true,
-  "tokenType": "bearerHeader",
-  "expiresIn": "1 day",
-  "token": "some token here"
+	"success": true,
+	"tokenType": "bearerHeader",
+	"expiresIn": "1 day",
+	"token": "some token here"
 }
 ```
 
@@ -127,8 +135,8 @@ Use JSON Body
 
 ```json
 {
-  "id_sepatu": 1,
-  "jumlah": 1
+	"id_sepatu": 1,
+	"jumlah": 1
 }
 ```
 
@@ -165,6 +173,6 @@ Use JSON Body
 
 ```json
 {
-  "id_retail": 16
+	"id_retail": 16
 }
 ```
